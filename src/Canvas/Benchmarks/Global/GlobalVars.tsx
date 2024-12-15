@@ -1,0 +1,16 @@
+export const SCENE_DURATION = 8000;
+export const TOTAL_SCENES = 6;
+export const STOP_TIME = 2;
+export const Radius = 16;
+export const Height = 5;
+export const CastShadow = false;
+export const ReceiveShadow = true;
+export const ReceiveShadowWalls = true;
+export const ambientLightIntensity = 0.2;
+export const lightIntensity = 14;
+export const pointLightIntensity = 8;
+export const pointLightClassicIntensity = 1;
+export const pointLightCausticsIntensity = 2;
+export const pointLightMetallicIntensity = 3;
+export const pointLightEmissiveIntensity = 4;
+export const pointLightSubsurfaceIntensity = 3;
