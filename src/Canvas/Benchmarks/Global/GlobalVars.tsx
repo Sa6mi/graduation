@@ -1,6 +1,8 @@
 export const SCENE_DURATION = 8000;
 export const TOTAL_SCENES = 6;
 export const STOP_TIME = 2;
+export const SCENE_SCREENSHOT_DELAY = 3;
+export const SCENE_TAKE_SCREENSHOTS = false;
 export const Radius = 16;
 export const Height = 5;
 export const CastShadow = false;
@@ -14,3 +16,8 @@ export const pointLightCausticsIntensity = 2;
 export const pointLightMetallicIntensity = 3;
 export const pointLightEmissiveIntensity = 4;
 export const pointLightSubsurfaceIntensity = 3;
+export const LOD = false;
+export const InstancedMesh = false;
+export const shadowMapSize = [2048, 2048]; 
+export const BustCount = 100;
+export const MergedGeometry = true;

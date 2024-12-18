@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Environment, useGLTF } from "@react-three/drei";
+import { Environment, Shadow, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   CausticsBox,
@@ -8,12 +8,27 @@ import {
   MetallicBox,
   SubsurfaceBox,
 } from "./CornellBoxTemplates";
-import { ambientLightIntensity, lightIntensity } from "../Global/GlobalVars";
+import { ambientLightIntensity, lightIntensity, shadowMapSize } from "../Global/GlobalVars";
 
 interface CornellSelectionProps {
   Choice: number;
 }
+interface CornellScene {
+  Choice: number;
+  camerapos: number;
+}
+const cameraPositions = [
+  { x: 0, y: 0, z: 5 },
+  { x: 0, y: 0, z: 10 },
+  { x: 0, y: 0, z: 16 },
+]
 
+function CameraRig({ camerapos }: { camerapos: number }) {
+  useThree(({ camera }) => {
+    camera.position.set(cameraPositions[camerapos].x, cameraPositions[camerapos].y, cameraPositions[camerapos].z);
+  });
+  return null;
+}
 function CornellSelection({ Choice }: CornellSelectionProps) {
   return (
     <>
@@ -24,10 +39,11 @@ function CornellSelection({ Choice }: CornellSelectionProps) {
             angle={Math.PI / 4}
             penumbra={0.1}
             intensity={lightIntensity}
+            
             castShadow
-            shadow-mapSize={[2048, 2048]}
+            shadow-mapSize={shadowMapSize}
           />
-          <ClassicCornellBox />
+          <ClassicCornellBox/>
         </group>
         <group visible={Choice === 1}>
           <EmissiveBox />
@@ -40,7 +56,7 @@ function CornellSelection({ Choice }: CornellSelectionProps) {
             penumbra={0.1}
             intensity={lightIntensity}
             castShadow
-            shadow-mapSize={[2048, 2048]}
+            shadow-mapSize={shadowMapSize}
           />
           <MetallicBox />
         </group>
@@ -52,7 +68,7 @@ function CornellSelection({ Choice }: CornellSelectionProps) {
             penumbra={0.1}
             intensity={lightIntensity}
             castShadow
-            shadow-mapSize={[2048, 2048]}
+            shadow-mapSize={shadowMapSize}
           />
           <SubsurfaceBox />
         </group>
@@ -64,18 +80,19 @@ function CornellSelection({ Choice }: CornellSelectionProps) {
               penumbra={0.1}
               intensity={lightIntensity}
               castShadow
-              shadow-mapSize={[2048, 2048]}
-            />
+              shadow-mapSize={shadowMapSize}
+              />
             <CausticsBox />
           </group>
           </>
   );
 }
 
-export function CornellBoxScene(props: CornellSelectionProps) {
+export function CornellBoxScene(props: CornellScene) {
   return (
     <>
-      <CornellSelection Choice={props.Choice} />
+      <CornellSelection Choice={props.Choice}/>
+      <CameraRig camerapos={props.camerapos} />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import "./App.css";
 import { Shirt } from "./Canvas/Shirt";
 import { Caustics, OrbitControls, Sphere, Stats } from "@react-three/drei";
-import Benchmark from "./Canvas/Benchmarks/Benchmark";
 import { useControls } from "leva";
 import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import BenchmarkSpheres from "./Canvas/Benchmarks/BenchmarkSpheres";
@@ -41,15 +40,15 @@ function FpsGrabber() {
 function BenchmarkSelection({ Choice }: { Choice: number }) {
   switch (Choice) {
     case 0:
-      return <CornellBoxScene Choice={Choice} />;
+      return <CornellBoxScene Choice={Choice} camerapos={0} />;
     case 1:
-      return <CornellBoxScene Choice={Choice} />;
+      return <CornellBoxScene Choice={Choice} camerapos={0} />;
     case 2:
-      return <CornellBoxScene Choice={Choice} />;
+      return <CornellBoxScene Choice={Choice} camerapos={0} />;
     case 3:
-      return <CornellBoxScene Choice={Choice} />;
+      return <CornellBoxScene Choice={Choice} camerapos={0} />;
     case 4:
-      return <CornellBoxScene Choice={Choice} />;
+      return <CornellBoxScene Choice={Choice} camerapos={0} />;
       case 5:
       return <BenchmarkSpheres />;
     case 6:

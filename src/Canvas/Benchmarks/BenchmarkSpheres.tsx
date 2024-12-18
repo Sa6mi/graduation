@@ -2,9 +2,9 @@
 
 import React, { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Environment, useTexture } from "@react-three/drei";
+import { OrbitControls, Environment, useTexture, Detailed } from "@react-three/drei";
 import * as THREE from "three";
-import { Height, Radius, STOP_TIME } from "./Global/GlobalVars";
+import { Height, LOD, Radius, STOP_TIME } from "./Global/GlobalVars";
 interface SphereProps {
   position: [number, number, number];
   color?: string;
@@ -30,6 +30,7 @@ interface SphereProps {
   roughnessMap?: boolean;
   metallicMap?: boolean;
   clearcoat?: number;
+  useLOD?: boolean;
 }
 
 function Sphere({
@@ -46,9 +47,12 @@ function Sphere({
   isAnisotropic = false,
   isIridescent = false,
   isSubsurface = false,
+  useLOD = false,
   ...props
 }: SphereProps) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const meshRefMid = useRef<THREE.Mesh>(null);
+  const meshRefLow = useRef<THREE.Mesh>(null);
   const { scene } = useThree();
   const startTimeRef = useRef<number | null>(null);
 
@@ -66,11 +70,15 @@ function Sphere({
     }
 
     if (
-      meshRef.current &&
+      meshRef.current &&  meshRefMid.current && meshRefLow.current &&
       state.clock.elapsedTime - startTimeRef.current >= STOP_TIME
     ) {
       meshRef.current.rotation.x += delta * 0.2 * speed;
       meshRef.current.rotation.y += delta * 0.3 * speed;
+      meshRefMid.current.rotation.x += delta * 0.2 * speed;
+      meshRefMid.current.rotation.y += delta * 0.3 * speed;
+      meshRefLow.current.rotation.x += delta * 0.2 * speed;
+      meshRefLow.current.rotation.y += delta * 0.3 * speed;
     }
   });
 
@@ -163,6 +171,25 @@ function Sphere({
     };
   }, []);
 
+  if (LOD) {
+    return (
+      <Detailed distances={[0, 10, 20]} >
+        <mesh position={position} ref={meshRef}>
+          <sphereGeometry args={[0.7, 64, 64]} />
+          {material && <primitive object={material} attach="material" />}
+        </mesh>
+        <mesh position={position} ref={meshRefMid} >
+          <sphereGeometry args={[0.7, 32, 32]} />
+          {material && <primitive object={material} attach="material" />}
+        </mesh>
+        <mesh position={position} ref={meshRefLow} >
+          <sphereGeometry args={[0.7, 16, 16]} />
+          {material && <primitive object={material} attach="material" />}
+        </mesh>
+      </Detailed>
+    );
+  }
+
   return (
     <mesh position={position} ref={meshRef} >
       <sphereGeometry args={[0.7, 64, 64]} />
@@ -193,10 +220,8 @@ function CameraRig() {
   return null;
 }
 export default function BenchmarkSpheres({
-  onCameraAngle,
   Visible,
 }: {
-  onCameraAngle?: (degrees: number) => void;
   Visible?: number;
 }) {
   const sphereConfigs = [
@@ -278,25 +303,25 @@ export default function BenchmarkSpheres({
       {Visible === 5 && <CameraRig />}
       <color attach="background" args={["#222222"]} />
       <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={5} />
-      <Sphere position={[-4, 4, 0]} {...sphereConfigs[0]}/>
-      <Sphere position={[-2, 4, 0]} {...sphereConfigs[1]} />
-      <Sphere position={[0, 4, 0]} {...sphereConfigs[2]} />
-      <Sphere position={[2, 4, 0]} {...sphereConfigs[3]} />
-      <Sphere position={[4, 4, 0]} {...sphereConfigs[4]} />
+      <pointLight position={[10, 10, 10]} intensity={5} castShadow/>
+      <Sphere position={[-4, 4, 0]} {...sphereConfigs[0]} useLOD={LOD}/>
+      <Sphere position={[-2, 4, 0]} {...sphereConfigs[1]} useLOD={LOD}/>
+      <Sphere position={[0, 4, 0]} {...sphereConfigs[2]} useLOD={LOD}/>
+      <Sphere position={[2, 4, 0]} {...sphereConfigs[3]} useLOD={LOD}/>
+      <Sphere position={[4, 4, 0]} {...sphereConfigs[4]} useLOD={LOD}/>
 
-      <Sphere position={[-3, 2, 0]} {...sphereConfigs[5]} />
-      <Sphere position={[-1, 2, 0]} {...sphereConfigs[6]} />
-      <Sphere position={[1, 2, 0]} {...sphereConfigs[7]} />
-      <Sphere position={[3, 2, 0]} {...sphereConfigs[8]} />
+      <Sphere position={[-3, 2, 0]} {...sphereConfigs[5]} useLOD={LOD}/>
+      <Sphere position={[-1, 2, 0]} {...sphereConfigs[6]} useLOD={LOD}/>
+      <Sphere position={[1, 2, 0]} {...sphereConfigs[7]} useLOD={LOD}/>
+      <Sphere position={[3, 2, 0]} {...sphereConfigs[8]} useLOD={LOD}/>
 
-      <Sphere position={[-2, 0, 0]} {...sphereConfigs[9]} />
-      <Sphere position={[0, 0, 0]} {...sphereConfigs[10]} />
-      <Sphere position={[2, 0, 0]} {...sphereConfigs[11]} />
+      <Sphere position={[-2, 0, 0]} {...sphereConfigs[9]} useLOD={LOD}/>
+      <Sphere position={[0, 0, 0]} {...sphereConfigs[10]} useLOD={LOD}/>
+      <Sphere position={[2, 0, 0]} {...sphereConfigs[11]} useLOD={LOD}/>
 
-      <Sphere position={[-1, -2, 0]} {...sphereConfigs[12]} />
-      <Sphere position={[1, -2, 0]} {...sphereConfigs[13]} />
-      <Sphere position={[0, -4, 0]} {...sphereConfigs[14]} />
+      <Sphere position={[-1, -2, 0]} {...sphereConfigs[12]} useLOD={LOD}/>
+      <Sphere position={[1, -2, 0]} {...sphereConfigs[13]} useLOD={LOD}/>
+      <Sphere position={[0, -4, 0]} {...sphereConfigs[14]} useLOD={LOD}/>
       {visible === 5 && <Environment files={"/HDRI/lilienstein_1k.hdr"} />}
     </group>
   );
