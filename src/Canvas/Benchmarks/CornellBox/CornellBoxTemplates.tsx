@@ -29,40 +29,6 @@ export function ClassicCornellBox() {
 export function CausticsBox() {
   return (
     <CornellBox leftWallColor="#4444ff" rightWallColor="#44ff44" lightIntensity={pointLightCausticsIntensity}>
-      {LOD ? (
-        <>
-          <Detailed distances={[0, 8, 15]}>
-            <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 32, 32]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.5} roughness={0} ior={1.5} transparent />
-            </mesh>
-            <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 16, 16]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.5} roughness={0.2} ior={1.5} transparent />
-            </mesh>
-            <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 8, 8]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.5} roughness={0.4} ior={1.5} transparent />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 8, 15]}>
-            <mesh position={[-1, -0.5, 1.1]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.6, 32, 32]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.3} roughness={0} ior={1.7} transparent />
-            </mesh>
-            <mesh position={[-1, -0.5, 1.1]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.6, 16, 16]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.3} roughness={0.2} ior={1.7} transparent />
-            </mesh>
-            <mesh position={[-1, -0.5, 1.1]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.6, 8, 8]} />
-              <meshPhysicalMaterial transmission={1} thickness={0.3} roughness={0.4} ior={1.7} transparent />
-            </mesh>
-          </Detailed>
-        </>
-      ) : (
-        <>
           <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
             <sphereGeometry args={[1, 32, 32]} />
             <meshPhysicalMaterial 
@@ -83,63 +49,12 @@ export function CausticsBox() {
               transparent
             />
           </mesh>
-        </>
-      )}
     </CornellBox>
   );
 }
 export function MetallicBox() {
   return (
     <CornellBox leftWallColor="#888888" rightWallColor="#444444"  lightIntensity={pointLightMetallicIntensity}>
-      {LOD ? (
-        <>
-          <Detailed distances={[0, 8, 15]}>
-            <mesh position={[-1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusKnotGeometry args={[0.5, 0.2, 128, 32]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.15} />
-            </mesh>
-            <mesh position={[-1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusKnotGeometry args={[0.5, 0.2, 64, 16]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.3} />
-            </mesh>
-            <mesh position={[-1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusKnotGeometry args={[0.5, 0.2, 32, 8]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.5} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 8, 15]}>
-            <mesh position={[1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.7, 32, 32]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.3} />
-            </mesh>
-            <mesh position={[1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.7, 16, 16]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.5} />
-            </mesh>
-            <mesh position={[1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.7, 8, 8]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.7} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 8, 15]}>
-            <mesh position={[0, 0.5, 0]} rotation={[Math.PI/3, 0, Math.PI/4]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.6, 0.6, 0.6]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.15} />
-            </mesh>
-            <mesh position={[0, 0.5, 0]} rotation={[Math.PI/3, 0, Math.PI/4]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.6, 0.6, 0.6]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.3} />
-            </mesh>
-            <mesh position={[0, 0.5, 0]} rotation={[Math.PI/3, 0, Math.PI/4]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.6, 0.6, 0.6]} />
-              <meshPhysicalMaterial color="#ffffff" metalness={1} roughness={0.5} />
-            </mesh>
-          </Detailed>
-        </>
-      ) : (
-        <>
           <mesh position={[-1, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
             <torusKnotGeometry args={[0.5, 0.2, 128, 32]} />
             <meshPhysicalMaterial 
@@ -164,8 +79,6 @@ export function MetallicBox() {
               roughness={0.15}
             />
           </mesh>
-        </>
-      )}
     </CornellBox>
   );
 }
@@ -173,55 +86,6 @@ export function MetallicBox() {
 export function EmissiveBox() {
   return (
     <CornellBox leftWallColor="#222222" rightWallColor="#222222" lightIntensity={pointLightEmissiveIntensity}>
-      {LOD ? (
-        <>
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[-1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.5, 32, 32]} />
-              <meshPhysicalMaterial color="#000000" emissive="#0ffff0" emissiveIntensity={1.0} clearcoat={1} clearcoatRoughness={0.5} specularIntensity={6} />
-            </mesh>
-            <mesh position={[-1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.5, 16, 16]} />
-              <meshPhysicalMaterial color="#000000" emissive="#0ffff0" emissiveIntensity={0.8} clearcoat={1} clearcoatRoughness={0.7} specularIntensity={4} />
-            </mesh>
-            <mesh position={[-1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[0.5, 8, 8]} />
-              <meshPhysicalMaterial color="#000000" emissive="#0ffff0" emissiveIntensity={0.6} clearcoat={1} clearcoatRoughness={0.9} specularIntensity={2} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshPhysicalMaterial emissive="#ff00ff" emissiveIntensity={2} />
-            </mesh>
-            <mesh position={[1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshPhysicalMaterial emissive="#ff00ff" emissiveIntensity={1.5} />
-            </mesh>
-            <mesh position={[1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshPhysicalMaterial emissive="#ff00ff" emissiveIntensity={1} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[0, 1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusGeometry args={[0.4, 0.2, 16, 32]} />
-              <meshPhysicalMaterial emissive="#00ffff" emissiveIntensity={3} />
-            </mesh>
-            <mesh position={[0, 1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusGeometry args={[0.4, 0.2, 12, 24]} />
-              <meshPhysicalMaterial emissive="#00ffff" emissiveIntensity={2} />
-            </mesh>
-            <mesh position={[0, 1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <torusGeometry args={[0.4, 0.2, 8, 16]} />
-              <meshPhysicalMaterial emissive="#00ffff" emissiveIntensity={1} />
-            </mesh>
-          </Detailed>
-        </>
-      ) : (
-        <>
           <mesh position={[-1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
             <sphereGeometry args={[0.5, 32, 32]} />
             <meshPhysicalMaterial 
@@ -247,8 +111,6 @@ export function EmissiveBox() {
               emissiveIntensity={3}
             />
           </mesh>
-        </>
-      )}
     </CornellBox>
   );
 }
@@ -256,55 +118,6 @@ export function EmissiveBox() {
 export function SubsurfaceBox() {
   return (
     <CornellBox leftWallColor="#ffcccc" rightWallColor="#ccffcc" lightIntensity={pointLightSubsurfaceIntensity}>
-      {LOD ? (
-        <>
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[0, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 32, 32]} />
-              <meshPhysicalMaterial color="#ff6b6b" transmission={0.5} thickness={0.5} roughness={0.2} ior={1.5} attenuationColor="#ff0000" attenuationDistance={0.5} />
-            </mesh>
-            <mesh position={[0, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 16, 16]} />
-              <meshPhysicalMaterial color="#ff6b6b" transmission={0.5} thickness={0.5} roughness={0.4} ior={1.5} attenuationColor="#ff0000" attenuationDistance={0.7} />
-            </mesh>
-            <mesh position={[0, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <sphereGeometry args={[1, 8, 8]} />
-              <meshPhysicalMaterial color="#ff6b6b" transmission={0.5} thickness={0.5} roughness={0.6} ior={1.5} attenuationColor="#ff0000" attenuationDistance={0.9} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[-1.5, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <cylinderGeometry args={[0.5, 0.5, 2]} />
-              <meshPhysicalMaterial color="#ffffff" transmission={0.8} thickness={0.8} roughness={0.1} ior={1.4} attenuationColor="#ffffff" attenuationDistance={1} />
-            </mesh>
-            <mesh position={[-1.5, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <cylinderGeometry args={[0.5, 0.5, 2]} />
-              <meshPhysicalMaterial color="#ffffff" transmission={0.8} thickness={0.8} roughness={0.3} ior={1.4} attenuationColor="#ffffff" attenuationDistance={1.2} />
-            </mesh>
-            <mesh position={[-1.5, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <cylinderGeometry args={[0.5, 0.5, 2]} />
-              <meshPhysicalMaterial color="#ffffff" transmission={0.8} thickness={0.8} roughness={0.5} ior={1.4} attenuationColor="#ffffff" attenuationDistance={1.4} />
-            </mesh>
-          </Detailed>
-
-          <Detailed distances={[0, 10, 20]}>
-            <mesh position={[1, 0, 0]} rotation={[Math.PI/6, 0, Math.PI/6]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.7, 0.7, 0.7]} />
-              <meshPhysicalMaterial color="#ff9999" transmission={0.6} thickness={0.4} roughness={0.1} ior={1.6} attenuationColor="#ff6666" attenuationDistance={0.3} />
-            </mesh>
-            <mesh position={[1, 0, 0]} rotation={[Math.PI/6, 0, Math.PI/6]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.7, 0.7, 0.7]} />
-              <meshPhysicalMaterial color="#ff9999" transmission={0.6} thickness={0.4} roughness={0.3} ior={1.6} attenuationColor="#ff6666" attenuationDistance={0.5} />
-            </mesh>
-            <mesh position={[1, 0, 0]} rotation={[Math.PI/6, 0, Math.PI/6]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
-              <boxGeometry args={[0.7, 0.7, 0.7]} />
-              <meshPhysicalMaterial color="#ff9999" transmission={0.6} thickness={0.4} roughness={0.5} ior={1.6} attenuationColor="#ff6666" attenuationDistance={0.7} />
-            </mesh>
-          </Detailed>
-        </>
-      ) : (
-        <>
           <mesh position={[0, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
             <sphereGeometry args={[1, 32, 32]} />
             <meshPhysicalMaterial 
@@ -341,8 +154,6 @@ export function SubsurfaceBox() {
               attenuationDistance={0.3}
             />
           </mesh>
-        </>
-      )}
     </CornellBox>
   );
 }

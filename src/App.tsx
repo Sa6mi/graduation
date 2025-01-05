@@ -5,7 +5,7 @@ import { Caustics, OrbitControls, Sphere, Stats } from "@react-three/drei";
 import { useControls } from "leva";
 import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import BenchmarkSpheres from "./Canvas/Benchmarks/BenchmarkSpheres";
-import { Chess } from "./Canvas/Benchmarks/Chess";
+import { Chess } from "./Canvas/Benchmarks/Chess/ChessMerged";
 import { CornellBoxScene } from "./Canvas/Benchmarks/CornellBox/CornellBoxScene";
 import { useEffect } from "react";
 import AutomatedBenchmark from "./Canvas/Benchmarks/AutomatedBenchmark";

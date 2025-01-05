@@ -1,17 +1,47 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { CornellBoxScene } from "./CornellBox/CornellBoxScene";
-import BenchmarkSpheres from "./BenchmarkSpheres";
 import { useEffect, useRef, useState } from "react";
 import { OrbitControls, Stats } from "@react-three/drei";
-import SphereBenchmark from "./SphereInd";
 import {
   SCENE_DURATION,
   SCENE_SCREENSHOT_DELAY,
   SCENE_TAKE_SCREENSHOTS,
   TOTAL_SCENES,
 } from "./Global/GlobalVars";
-import { BustScene } from "./RandomBench/RandomBenchmark";
-import { Chess } from "./Chess";
+import { BustSceneLoader } from "./RandomBench/BustSceneLoader";
+import { ChessLoader } from "./Chess/ChessLoader";
+
+const sceneNames = [
+  'Classic Cornell Box',
+  'Emissive Box',
+  'Metallic Box',
+  'Subsurface Box',
+  'Caustics Box',
+  'Classic Cornell Box Compressed',
+  'Emissive Box Compressed',
+  'Metallic Box Compressed',
+  'Subsurface Box Compressed',
+  'Caustics Box Compressed',
+  'Classic Cornell Box LOD',
+  'Emissive Box LOD',
+  'Metallic Box LOD',
+  'Subsurface Box LOD',
+  'Caustics Box LOD',
+  'Classic Cornell Box Material Pool',
+  'Emissive Box Material Pool',
+  'Metallic Box Material Pool',
+  'Subsurface Box Material Pool',
+  'Caustics Box Material Pool',
+  'Bust Scene',
+  'Bust Scene LOD',
+  'Bust Instanced',
+  'Chess',
+  'Chess Merged',
+  'Chess Instanced',
+  'Chess Layered',
+  'Chess MipMap',
+  'Chess Normal Compressed'
+];
 
 interface BenchmarkMetric {
   sceneId: number;
@@ -24,6 +54,29 @@ interface BenchmarkMetric {
 }
 
 const benchmarkResults: BenchmarkMetric[] = [];
+const downloadBenchmarkResults = (results: Record<number, Record<string, number[]>>) => {
+  let content = "Benchmark Results\n==================\n\n";
+  
+  Object.entries(results).forEach(([scene, metrics]) => {
+    content += `${sceneNames[parseInt(scene)]}\n${'-'.repeat(sceneNames[parseInt(scene)].length)}\n`;
+    content += `FPS: min=${Math.min(...metrics.fps)}, max=${Math.max(...metrics.fps)}, avg=${(metrics.fps.reduce((a, b) => a + b) / metrics.fps.length).toFixed(2)}\n`;
+    content += `Frame Time: min=${Math.min(...metrics.frameTime).toFixed(2)}ms, max=${Math.max(...metrics.frameTime).toFixed(2)}ms, avg=${(metrics.frameTime.reduce((a, b) => a + b) / metrics.frameTime.length).toFixed(2)}ms\n`;
+    content += `Draw Calls: avg=${(metrics.drawCalls.reduce((a, b) => a + b) / metrics.drawCalls.length).toFixed(0)}\n`;
+    content += `Triangles: avg=${(metrics.triangles.reduce((a, b) => a + b) / metrics.triangles.length).toFixed(0)}\n`;
+    content += `Textures: avg=${(metrics.textureCount.reduce((a, b) => a + b) / metrics.textureCount.length).toFixed(0)}\n`;
+    content += `Memory Usage: avg=${(metrics.memoryUsage.reduce((a, b) => a + b) / metrics.memoryUsage.length).toFixed(0)}\n\n`;
+  });
+
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `benchmark-results-${new Date().toISOString().split('T')[0]}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
 
 function FpsGrabber({ sceneId }: { sceneId: number }) {
   const { gl } = useThree();
@@ -53,7 +106,7 @@ function FpsGrabber({ sceneId }: { sceneId: number }) {
         memoryUsage: info.memory.geometries,
       });
 
-      console.log(`Scene ${sceneId} Metrics:`, {
+      console.log(`${sceneNames[sceneId]} Metrics:`, {
         fps,
         frameTime: (frameTime / data.current.frameCount).toFixed(2),
         drawCalls: info.render.calls,
@@ -92,7 +145,7 @@ function FpsGrabber({ sceneId }: { sceneId: number }) {
 
         console.log("Benchmark Complete - Final Results:");
         Object.entries(results).forEach(([scene, metrics]) => {
-          console.log(`Scene ${scene}:`, {
+          console.log(`${sceneNames[parseInt(scene)]}:`, {
             fps: {
               min: Math.min(...metrics.fps),
               max: Math.max(...metrics.fps),
@@ -134,6 +187,7 @@ function FpsGrabber({ sceneId }: { sceneId: number }) {
             },
           });
         });
+        downloadBenchmarkResults(results);
       }
     };
   }, [sceneId]);
@@ -200,16 +254,12 @@ function Switcher() {
   if (sceneRef.current.complete) return null;
 
   const renderScene = () => {
-    const zaxis = 4;
     return (
       <>
         <CornellBoxScene Choice={sceneRef.current.currentScene} camerapos={0} />;
-        {/* <BenchmarkSpheres Visible={5} />; */}
-        {/* <WithLODScene zaxis={zaxis}/> */}
-        {/* <NoLODScene zaxis={zaxis}/> */}
-        {/* <FrustumBenchmark /> */}
-        {/* <BustScene camerapos={0} /> */}
-        <OrbitControls />
+        <BustSceneLoader Choice={sceneRef.current.currentScene} camerapos={0} />;        
+        <ChessLoader Choice={sceneRef.current.currentScene} />;
+        {/* <OrbitControls /> */}
       </>
     );
   };
