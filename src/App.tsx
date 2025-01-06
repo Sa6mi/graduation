@@ -40,15 +40,15 @@ function FpsGrabber() {
 function BenchmarkSelection({ Choice }: { Choice: number }) {
   switch (Choice) {
     case 0:
-      return <CornellBoxScene Choice={Choice} camerapos={0} />;
+      return <CornellBoxScene Choice={Choice} />;
     case 1:
-      return <CornellBoxScene Choice={Choice} camerapos={0} />;
+      return <CornellBoxScene Choice={Choice}  />;
     case 2:
-      return <CornellBoxScene Choice={Choice} camerapos={0} />;
+      return <CornellBoxScene Choice={Choice}  />;
     case 3:
-      return <CornellBoxScene Choice={Choice} camerapos={0} />;
+      return <CornellBoxScene Choice={Choice} />;
     case 4:
-      return <CornellBoxScene Choice={Choice} camerapos={0} />;
+      return <CornellBoxScene Choice={Choice}/>;
       case 5:
       return <BenchmarkSpheres />;
     case 6:

@@ -52,7 +52,7 @@ export function ClassicCornellBoxCompressed() {
 export function CausticsBoxCompressed() {
   return (
     <CornellBox leftWallColor="#4444ff" rightWallColor="#44ff44" lightIntensity={pointLightCausticsIntensity}>
-          <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow} geometry={sharedGeometries.sphere.transmission}>
+          <mesh position={[1, 0.4, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow} geometry={sharedGeometries.sphere.standard}>
             <meshPhysicalMaterial 
               transmission={1}
               thickness={0.5}

@@ -110,7 +110,7 @@ export function MetallicBoxLOD() {
 export function EmissiveBoxLOD() {
   return (
     <CornellBox leftWallColor="#222222" rightWallColor="#222222" lightIntensity={pointLightEmissiveIntensity}>
-          <Detailed distances={[0, 10, 20]}>
+          <Detailed distances={[0, 8, 15]}>
             <mesh position={[-1, 0, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
               <sphereGeometry args={[0.5, 32, 32]} />
               <meshPhysicalMaterial color="#000000" emissive="#0ffff0" emissiveIntensity={1.0} clearcoat={1} clearcoatRoughness={0.5} specularIntensity={6} />
@@ -161,7 +161,7 @@ export function EmissiveBoxLOD() {
 export function SubsurfaceBoxLOD() {
   return (
     <CornellBox leftWallColor="#ffcccc" rightWallColor="#ccffcc" lightIntensity={pointLightSubsurfaceIntensity}>
-          <Detailed distances={[0, 10, 20]}>
+          <Detailed distances={[0, 8, 15]}>
             <mesh position={[0, -1, 0]} castShadow={CastShadow} receiveShadow={ReceiveShadow}>
               <sphereGeometry args={[1, 32, 32]} />
               <meshPhysicalMaterial color="#ff6b6b" transmission={0.5} thickness={0.5} roughness={0.2} ior={1.5} attenuationColor="#ff0000" attenuationDistance={0.5} />

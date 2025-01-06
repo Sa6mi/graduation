@@ -14,7 +14,7 @@ const loadTextureWithMipmaps = (url: string) => {
 };
 
 export function Chess(props: JSX.IntrinsicElements["group"]) {
-  const Scene = useLoader(GLTFLoader, "BenchmarkModels/Chess/untitled.gltf");
+  const Scene = useGLTF("BenchmarkModels/Chess/untitled.gltf");
   const bishopBlackTexture = loadTextureWithMipmaps(
     "/BenchmarkModels/Chess/bishop_black_base_color.jpg"
   );
@@ -93,3 +93,5 @@ export function Chess(props: JSX.IntrinsicElements["group"]) {
       </group>
   );
 }
+
+useGLTF.preload("BenchmarkModels/Chess/untitled.gltf");

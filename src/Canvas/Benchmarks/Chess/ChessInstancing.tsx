@@ -76,7 +76,7 @@ type GLTFResult = GLTF & {
 }
 
 export function Chess(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('BenchmarkModels/ChessMerged.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('BenchmarkModels/ChessMerged.glb') as GLTFResult
   const whitePawnBodyRef = useRef<THREE.InstancedMesh>(null);
   const whitePawnTopRef = useRef<THREE.InstancedMesh>(null);
   const blackPawnBodyRef = useRef<THREE.InstancedMesh>(null);
@@ -262,3 +262,5 @@ export function Chess(props: JSX.IntrinsicElements['group']) {
       </group>
   )
 }
+
+useGLTF.preload('BenchmarkModels/ChessMerged.glb')

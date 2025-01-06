@@ -23,7 +23,6 @@ interface CornellSelectionProps {
 }
 interface CornellScene {
   Choice: number;
-  camerapos: number;
 }
 const cameraPositions = [
   { x: 0, y: 0, z: 5 },
@@ -31,16 +30,6 @@ const cameraPositions = [
   { x: 0, y: 0, z: 16 },
 ];
 
-function CameraRig({ camerapos }: { camerapos: number }) {
-  useThree(({ camera }) => {
-    camera.position.set(
-      cameraPositions[camerapos].x,
-      cameraPositions[camerapos].y,
-      cameraPositions[camerapos].z
-    );
-  });
-  return null;
-}
 function CornellSelection({ Choice }: CornellSelectionProps) {
   return (
     <>
@@ -123,8 +112,6 @@ export function CornellBoxScene(props: CornellScene) {
       />
       </group>
       <CornellSelection Choice={props.Choice} />
-      {(props.Choice >= 0 && props.Choice <= 19) && <CameraRig camerapos={props.camerapos} />
-    }
     </>
   );
 }

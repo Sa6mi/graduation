@@ -75,7 +75,7 @@ type GLTFResult = GLTF & {
   }
 }
 export function Chess(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('BenchmarkModels/ChessMerged.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('BenchmarkModels/ChessMerged.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -425,3 +425,5 @@ export function Chess(props: JSX.IntrinsicElements['group']) {
     </group>
       )
 }
+
+useGLTF.preload('BenchmarkModels/ChessMerged.glb')
