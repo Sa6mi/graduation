@@ -19,5 +19,5 @@ export const pointLightSubsurfaceIntensity = 3;
 export const LOD = false;
 export const InstancedMesh = false;
 export const shadowMapSize = [2048, 2048]; 
-export const BustCount = 100;
+export const BustCount = 120;
 export const MergedGeometry = true;

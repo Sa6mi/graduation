@@ -68,20 +68,7 @@ function CameraReset({ Choice }: { Choice: number }) {
   return null;
 }
 function App() {
-  const BenchmarkChoice = useControls({
-    flag: {
-      value: 0,
-      options: {
-        ClassicCornellBox: 0,
-        EmissiveCornellBox:1,
-        MetallicCornellBox:2,
-        SubsurfaceCornellBox:3,
-        CausticsCornellBox:4,
-        Spheres: 5, 
-        Chess: 6,        
-      },
-    },
-  });
+
   return (
     <div className="App">
       <AutomatedBenchmark />
