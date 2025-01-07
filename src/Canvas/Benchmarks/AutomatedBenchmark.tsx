@@ -325,7 +325,7 @@ function Switcher() {
 
     return () => clearInterval(interval);
   }, []);
-
+  if (sceneRef.current.complete) return null;
   const renderScene = () => {
     const scene = sceneRef.current.currentScene;
     return (
