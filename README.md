@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# WebGL Rendering Benchmark Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+A comprehensive benchmarking tool for analyzing various WebGL rendering techniques using Three.js and React Three Fiber. This Project was made to help provide quantifiable metrics for a comprehinsive analysis on WebGL performance enhancing techniques my bachelor's graduation project evaluates different optimization strategies and their impact on rendering performance.
 
-## Available Scripts
+## Features
+- Multiple scene types (Cornell Box, Bust, Chess)
+- Various rendering techniques:
+  - Material Pooling
+  - Level of Detail (LOD)
+  - Geometry Compression
+  - Instancing
+  - Texture Optimization
+- Automated benchmarking process
+- Performance metrics collection
+- Screenshot capture
+- Results export
 
-In the project directory, you can run:
+## Scene Types
+### Cornell Box Scenes
+- Classic Cornell Box
+- Emissive Box
+- Metallic Box
+- Subsurface Box
+- Caustics Box
+- With variations:
+  - Compressed
+  - LOD
+  - Material Pool
+  - Multiple camera positions (5, 10, 16 units)
 
-### `npm start`
+### Bust Scenes
+- Standard Bust
+- LOD Bust
+- Instanced Bust
+- Multiple camera positions (30, 50 units)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Chess Scenes
+- Standard Chess
+- Merged Chess
+- Instanced Chess
+- Layered Chess
+- MipMap Chess
+- Normal Compressed Chess
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Metrics Collected
+- Frames Per Second (FPS)
+- Frame Time
+- Draw Calls
+- Triangle Count
+- Texture Count
+- Memory Usage
 
-### `npm test`
+## Setup
+1. Clone the repository
+2. Install dependencies: "npm install"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Modify GlobalVariables If Needed
