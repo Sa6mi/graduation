@@ -1,12 +1,8 @@
 import * as THREE from "three";
-import { Detailed, Environment, useGLTF } from "@react-three/drei";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useThree } from "@react-three/fiber";
+import {useGLTF } from "@react-three/drei";
 import {
   BustCount,
   CastShadow,
-  InstancedMesh,
-  LOD,
   ReceiveShadow,
 } from "../Global/GlobalVars";
 

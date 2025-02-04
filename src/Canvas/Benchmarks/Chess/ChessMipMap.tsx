@@ -1,8 +1,5 @@
 import * as THREE from "three";
-import React, { useRef } from "react";
-import { Environment, useGLTF } from "@react-three/drei";
-import { GLTF, GLTFLoader } from "three-stdlib";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 
 const textureLoader = new THREE.TextureLoader();
 const loadTextureWithMipmaps = (url: string) => {

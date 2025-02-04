@@ -1,7 +1,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { CornellBoxScene } from "./CornellBox/CornellBoxScene";
 import { useEffect, useRef, useState } from "react";
-import { OrbitControls, Stats, Text, Text3D } from "@react-three/drei";
+import {Stats} from "@react-three/drei";
 import {
   SCENE_DURATION,
   SCENE_SCREENSHOT_DELAY,
@@ -96,15 +96,7 @@ interface BenchmarkMetric {
   textureCount: number;
   memoryUsage: number;
 }
-const CornellcameraPositions = [
-  { x: 0, y: 0, z: 5 },
-  { x: 0, y: 0, z: 10 },
-  { x: 0, y: 0, z: 16 },
-];
-const BustcameraPositions = [
-  { x: 0, y: 0, z: 30 },
-  { x: 0, y: 0, z: 50 },
-];
+
 
 const benchmarkResults: BenchmarkMetric[] = [];
 const downloadBenchmarkResults = (
@@ -282,10 +274,11 @@ function Switcher() {
 
   const takeScreenshot = (sceneId: number) => {
     const canvas = gl.domElement;
+    const sceneName = sceneNames[sceneId] || `scene-${sceneId}`;
     requestAnimationFrame(() => {
       if (canvas) {
         const link = document.createElement("a");
-        link.setAttribute("download", `scene-${sceneId}.png`);
+        link.setAttribute("download", `scene-${sceneName}.png`);
         link.setAttribute(
           "href",
           canvas

@@ -1,6 +1,4 @@
-import * as THREE from "three";
 import { Environment } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
 import { BustScene } from "./RandomBenchmark";
 import { BustSceneLOD } from "./RandomBenchmarkLOD";
 import { RandomBenchmark } from "./RandomBenchmarkInstanced";

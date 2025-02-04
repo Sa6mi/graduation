@@ -1,8 +1,4 @@
-// CornellBox.tsx
-"use client";
-
 import React from "react";
-import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { ReceiveShadowWalls } from "../Global/GlobalVars";
 
@@ -56,7 +52,6 @@ export default function CornellBox({
       <Wall position={[-2, 0, 0]} rotation={[0, Math.PI/2, 0]} color={leftWallColor} size={[boxSize, boxSize]} /> 
       <Wall position={[2, 0, 0]} rotation={[0, -Math.PI/2, 0]} color={rightWallColor} size={[boxSize, boxSize]} /> 
       {children}
-      {/* <ambientLight intensity={0.1} /> */}
       </>
   );
 }

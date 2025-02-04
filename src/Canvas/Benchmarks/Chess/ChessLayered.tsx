@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import React, { useEffect } from 'react'
-import { Environment, useGLTF } from '@react-three/drei'
+import { useEffect } from 'react'
+import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 
 
@@ -10,21 +10,6 @@ const LAYERS = {
   TRANSPARENT: { renderOrder: 2, layer: 2 }
 };
 
-const compareStates = (a: THREE.Material, b: THREE.Material): number => {
-  // Sort by transparency
-  if (a.transparent !== b.transparent) {
-    return a.transparent ? 1 : -1;
-  }
-  // Sort by alpha test
-  if (a.alphaTest !== b.alphaTest) {
-    return a.alphaTest > 0 ? -1 : 1;
-  }
-  // Sort by blend mode
-  if (a.blending !== b.blending) {
-    return a.blending - b.blending;
-  }
-  return 0;
-};
 
 export function Chess(props: JSX.IntrinsicElements['group']) {
   const { scene } = useGLTF('BenchmarkModels/Chess/untitled.gltf');

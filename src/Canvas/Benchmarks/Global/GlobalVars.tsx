@@ -1,7 +1,7 @@
-export const SCENE_DURATION = 12000;
+export const SCENE_DURATION = 8000;
 export const TOTAL_SCENES = 72;
-export const STOP_TIME = 0;
-export const SCENE_SCREENSHOT_DELAY = 3;
+export const STOP_TIME = 5;
+export const SCENE_SCREENSHOT_DELAY = 2;
 export const SCENE_TAKE_SCREENSHOTS = false;
 export const Radius = 16;
 export const Height = 5;

@@ -1,14 +1,10 @@
-import * as THREE from "three";
 import { Environment } from "@react-three/drei";
-import { useThree, useFrame } from "@react-three/fiber";
 import { Chess } from "./Chess";
 import { Chess as ChessInstanced } from "./ChessInstancing";
 import { Chess as ChessLayered } from "./ChessLayered";
 import { Chess as ChessMipMap } from "./ChessMipMap";
 import { Chess as ChessNormalCompress } from "./ChessNormalCompress";
 import { Chess as ChessMerged } from "./ChessMerged";
-import { useEffect, useRef } from "react";
-import { STOP_TIME } from "../Global/GlobalVars";
 
 interface ChessSelectionProps {
   Choice: number;

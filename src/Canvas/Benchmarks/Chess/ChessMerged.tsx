@@ -1,8 +1,6 @@
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { Environment, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
